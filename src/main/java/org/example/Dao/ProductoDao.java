@@ -126,6 +126,66 @@ public class ProductoDao {
         return productoConsonantes;
     }
 
+    //Escriba un método que muestre el número primo más cercano al precio más bajo de todos los productos
+
+    //Hallo el precio mas bajo
+
+    public double obtenerpreciomasBajo(){
+        List<Producto> productos= obtenerProductos();
+        if (productos.isEmpty()) {
+            return -1;
+        }
+
+        double preciomasBajo= productos.get(0).getPrecio();
+        for (Producto producto: productos){
+            if (producto.getPrecio()<preciomasBajo){
+                preciomasBajo=producto.getPrecio();
+            }
+        }
+        return preciomasBajo;
+    }
+
+    //primo o no
+    //nota: número primo debe ser mayor a 1 y no es divisible entre mas números (solo el 1 y el mismo número)
+    public boolean numeroesPrimo(int numero){
+        if (numero<2){
+            return false;
+        }
+        for(int i = 2; i< numero; i++) {
+            if (numero % i == 0) {
+                return false; //no es primo porque es divisible.
+            }
+        }
+        return true;
+
+    }
+
+    //Obtener el número primo mas cercano al precio mas bajo
+    public int obtenerNumeroPrimoMasCercano() {
+        double preciomasBajo = obtenerpreciomasBajo();
+        if (preciomasBajo == -1) {
+            return -1;
+        }
+
+        int precioInt= (int)Math.floor(preciomasBajo);
+        int arriba=precioInt+1;
+        int abajo=precioInt;
+
+        while (true){
+            if (numeroesPrimo(abajo)){
+                return abajo;
+            }
+
+            if (numeroesPrimo(arriba)){
+                return arriba;
+            }
+            arriba++;
+            abajo--;
+        }
+    }
+
+
+
     public int contarTotalProductos() {
         List<Producto> productos = obtenerProductos();
         return productos.size(); //

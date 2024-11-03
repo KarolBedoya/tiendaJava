@@ -36,7 +36,8 @@ public class Main {
             System.out.println("3. Actualizar algun producto");
             System.out.println("4. Eliminar un producto");
             System.out.println("5. Mostrar el producto con menor número de consonantes");
-            System.out.println("6. Quiero Salir");
+            System.out.println("6. Mostrar el número primo mas cercano al precio mas bajo");
+            System.out.println("7. Quiero Salir");
 
             //leemos
             int opcion = entrada.nextInt();
@@ -109,8 +110,20 @@ public class Main {
                         System.out.println("no hay productos en la base de datos.");
                     }
                     break;
-                //Este ya es para que pueda salir
+
                 case 6:
+                    double precioMasBajo = productoDao.obtenerpreciomasBajo();
+                    int primoCerca = productoDao.obtenerNumeroPrimoMasCercano();
+                    if (primoCerca==1){
+                        System.out.println("No hay productos en la base de datos (no se encontró precio)");
+                    }else {
+                        System.out.println("El precio mas bajo es: "+precioMasBajo);
+                        System.out.println("El numero primo mas cercano es: "+primoCerca);
+                    }
+                    break;
+
+                //Este ya es para que pueda salir
+                case 7:
                     System.out.println("Cerrandose...");
                     entrada.close();
                     return;
