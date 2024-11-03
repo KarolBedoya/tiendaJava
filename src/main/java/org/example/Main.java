@@ -35,7 +35,8 @@ public class Main {
             System.out.println("2. Mostrar los productos");
             System.out.println("3. Actualizar algun producto");
             System.out.println("4. Eliminar un producto");
-            System.out.println("5. Quiero Salir");
+            System.out.println("5. Mostrar el producto con menor número de consonantes");
+            System.out.println("6. Quiero Salir");
 
             //leemos
             int opcion = entrada.nextInt();
@@ -97,8 +98,19 @@ public class Main {
                     System.out.println("El producto se ha eliminado con exito!!!");
                     break;
 
-                //Este ya es para que pueda salir
                 case 5:
+                    Producto productoConsonantes = productoDao.obtenerproductomenorConsonantes();
+
+                    if (productoConsonantes != null) {
+                        int cantidadConsonantes = productoDao.conteoConsonantes(productoConsonantes.getNombre());
+                        System.out.println("El producto con el menor numero de consonantes: " +productoConsonantes);
+                        System.out.println("Con un total de "+cantidadConsonantes+" consonantes");
+                    } else {
+                        System.out.println("no hay productos en la base de datos.");
+                    }
+                    break;
+                //Este ya es para que pueda salir
+                case 6:
                     System.out.println("Cerrandose...");
                     entrada.close();
                     return;

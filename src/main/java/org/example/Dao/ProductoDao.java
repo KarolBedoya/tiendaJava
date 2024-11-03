@@ -1,5 +1,5 @@
 package org.example.Dao;
-
+//Dao: Objeto de accesos de datos
 //Importaciones nescesarias
 import org.example.Model.Producto;
 import org.example.database.ConnectionDatabase;
@@ -101,5 +101,34 @@ public class ProductoDao {
         }
     }
 
+    //Escriba un método que obtenga el producto con el menor número de consonantes.
+    public int conteoConsonantes(String nombre) {
+        final String consonantes = nombre.replaceAll("[aeiouAEIOU]", "");
+        return consonantes.length();
+    }
+
+    public Producto obtenerproductomenorConsonantes() {
+        List<Producto> productos = obtenerProductos();
+        if (productos.isEmpty()) {
+            return null;
+        }
+
+        Producto productoConsonantes = productos.get(0);
+        int minConsonantes= conteoConsonantes(productoConsonantes.getNombre());
+
+        for (Producto producto : productos) {
+            int cantidadConsonantes = conteoConsonantes(producto.getNombre());
+            if (cantidadConsonantes < minConsonantes) {
+                minConsonantes = cantidadConsonantes;
+                productoConsonantes = producto;
+            }
+        }
+        return productoConsonantes;
+    }
+
+    public int contarTotalProductos() {
+        List<Producto> productos = obtenerProductos();
+        return productos.size(); //
+    }
 }
 
