@@ -55,11 +55,11 @@ public class ProductoDao {
                 int id = resultSet.getInt("id");
                 String nombre = resultSet.getString("nombre");
                 String descripcion = resultSet.getString("descripcion");
-                //double precio = resultSet.getDouble("precio");
+                double precio = resultSet.getDouble("precio");
                 int cantidad = resultSet.getInt("cantidad");
 
                 //Aqui extraigo los datos creando un objeto para añadir a lo que es la lista de productos
-                productos.add(new Producto(id, nombre, descripcion, cantidad));
+                productos.add(new Producto(id, nombre,descripcion, precio, cantidad));
             }
         } catch (SQLException e) {
             e.printStackTrace();//las excepciones

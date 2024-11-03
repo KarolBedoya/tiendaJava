@@ -80,6 +80,7 @@ public class Producto {
                 "id=" + id +
                 ", nombre='" + nombre + '\'' + //comilla simple alrededor del nombre y demas
                 ", descripcion='" + descripcion + '\'' +
+                ", precio=" + precio +
                 ", cantidad=" + cantidad +
                 '}';
     }
